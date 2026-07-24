@@ -3,66 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Te extraño, vienes?</title>
+<title>Llegué hasta ti</title>
 <style>
-  body {margin:0; background:#0f0f23; text-align:center; font-family:Arial;}
-  h1 {color:#fff; margin:15px 0; font-size:22px;}
+  body {
+    margin:0; 
+    background:#0f0f23; 
+    text-align:center; 
+    font-family:Arial;
+  }
+  h1 {
+    color:#fff; 
+    margin:15px 0; 
+    font-size:22px;
+  }
   #game {
-    width: 100%; height: 60vh;
+    width: 100%; 
+    height: 60vh;
     background: url('nyc_cartoon_night_skyline.webp') center/cover;
-    position: relative; border-bottom: 4px solid #ffd6e8;
+    position: relative; 
+    border-bottom: 4px solid #ffd6e8;
+    overflow: hidden;
   }
   .player, .target {
-    position: absolute; bottom: 10px; width: 80px; height: 80px;
+    position: absolute; 
+    bottom: 10px; 
+    width: 100px;  /* más grandes */
+    height: 100px;
     background-image: url('chibi_couple_running.webp');
-    background-size: 160px 80px;
+    background-size: 200px 100px; /* 2 chibis de 100px cada uno */
+    background-color: transparent; /* sin fondo blanco */
   }
-  .player {left: 20px; background-position: left;}
-  .target {right: 20px; background-position: right;}
+  .player {
+    left: 20px; 
+    background-position: left; /* muestra al chico */
+    transition: left 0.1s; /* para que se mueva suavecito */
+  }
+  .target {
+    right: 20px; 
+    background-position: right; /* muestra a la chica */
+  }
   #winMessage {
-    display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    font-size: 26px; color:#ff4d88; background:white;
-    padding:20px; border-radius:20px; font-weight:bold;
+    display:none; 
+    position:absolute; 
+    top:50%; 
+    left:50%; 
+    transform:translate(-50%,-50%);
+    font-size: 26px; 
+    color:#ff4d88; 
+    background:white;
+    padding:20px; 
+    border-radius:20px; 
+    font-weight:bold;
+    box-shadow: 0 0 20px pink;
   }
-  .controls {display:flex; justify-content:center; gap:40px; margin-top:30px;}
+  .controls {
+    display:flex; 
+    justify-content:center; 
+    gap:40px; 
+    margin-top:30px;
+  }
   .btn {
-    width: 90px; height: 90px; border-radius: 50%;
-    background: #ff4d88; color: white; border: none; font-size: 45px;
+    width: 90px; 
+    height: 90px; 
+    border-radius: 50%;
+    background: #ff4d88; 
+    color: white; 
+    border: none; 
+    font-size: 45px;
   }
-  .instr {color:#fff; font-size:16px; margin-top:10px;}
-</style>
-</head>
-<body>
-  <h1>Ven conmigo 🗽❤️</h1>
-  <div id="game">
-    <div class="player" id="player"></div>
-    <div class="target" id="target"></div>
-    <div id="winMessage">FELIZ CUMPLEAÑOS<br>AMOR🎉</div>
-  </div>
-
-  <div class="controls">
-    <button class="btn" id="leftBtn">←</button>
-    <button class="btn" id="rightBtn">→</button>
-  </div>
-  <p class="instr">Toca → para correr hasta mí</p>
-
-<script>
-let player = document.getElementById('player');
-let posX = 20; let ganado = false;
-
-function mover(direccion) {
-  if(ganado) return;
-  if(direccion === 'right') posX += 25;
-  if(direccion === 'left') posX -= 25;
-  if(posX < 0) posX = 0;
-  player.style.left = posX + 'px';
-  if(posX > 250){
-    ganado = true;
-    document.getElementById('winMessage').style.display = 'block';
-  }
-}
-document.getElementById('rightBtn').addEventListener('touchstart', () => mover('right'));
-document.getElementById('leftBtn').addEventListener('touchstart', () => mover('left'));
-</script>
-</body>
-</html>
+  .instr {
+    color:#fff; 
+    font-size:16px
